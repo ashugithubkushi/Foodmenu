@@ -1,0 +1,70 @@
+.navigation-menu {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.navigation-menu li {
+    margin: 0 10px;
+}
+
+.scrolling-container {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    width: fit-content;
+  
+    animation: scroll 5s linear infinite;
+  
+    -webkit-animation: scroll 5s linear infinite;
+    -moz-animation: scroll 5s linear infinite;
+    -ms-animation: scroll 5s linear infinite;
+  }
+  
+  @keyframes scroll {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+  
+  @-webkit-keyframes scroll {
+    0% {
+      -webkit-transform: translateX(100%);
+    }
+    100% {
+      -webkit-transform: translateX(-100%);
+    }
+  }
+  
+  @-moz-keyframes scroll {
+    0% {
+      -moz-transform: translateX(100%);
+    }
+    100% {
+      -moz-transform: translateX(-100%);
+    }
+  }
+  
+  @-ms-keyframes scroll {
+    0% {
+      -ms-transform: translateX(100%);
+    }
+    100% {
+      -ms-transform: translateX(-100%);
+    }
+  }
+
+ 
+  .order-page {
+    
+    /* border: 1px black solid; */
+    display: inline-block;
+    vertical-align: middle;
+    margin: 20px;
+    /* text-align: left; */
+
+  }
