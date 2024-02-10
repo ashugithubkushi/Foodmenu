@@ -34,8 +34,8 @@ import React, { useState } from 'react';
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <button type="submit">Log In</button>
-          {/* <NavLink to="/" type="submit" className="btn btn-success">Login</NavLink> */}
+          {/* <button type="submit">Log In</button> */}
+          <NavLink to="/" type="button" className="btn btn-success">Login</NavLink>
         </form>
 
   

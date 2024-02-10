@@ -4,7 +4,7 @@ import Layout from '../components/Layouts/Layout'
 const Abouut = () => {
   return (
     <Layout>
-        About page
+        Admin
     </Layout>
   )
 }
