@@ -1,125 +1,200 @@
-import React, { useState } from 'react'
-import Layout from '../components/Layouts/Layout'
-import "./Home.css"
+import React, { useState } from "react";
+// import Layout from '../components/Layouts/Layout'
+import "./Home.css";
+import { Link } from "react-router-dom";
+import Layout from "../components/Layouts/Layout";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
+  const navigate = useNavigate();
 
+  const [numberOfElders, setNumberOfElders] = useState();
+  const [snacksElder, setSnacksElder] = useState("");
+  const [drinksElder, setDrinksElder] = useState("");
+  const [totalItemElder, setTotalItemElder] = useState();
 
+  const [numberOfChild, setNumberOfChild] = useState();
+  const [snacksChildren, setSnacksChildren] = useState("");
+  const [drinksChildren, setDrinksChildren] = useState("");
+  const [totalItemChildren, setTotalItemChildren] = useState();
 
-  const [formData, setFormData] = useState({
-    elders: '',
-    childrens: '',
-    fooditem: '',
-    itemcount: '',
-  });
+  console.log("numberOfElders", numberOfElders);
+  console.log("snacksElder", snacksElder);
+  console.log("drinksElder", drinksElder);
+  console.log("totalItemElder", totalItemElder);
+  console.log("numberOfChild", numberOfChild);
+  console.log("snacksChildren", snacksChildren);
+  console.log("drinksChildren", drinksChildren);
+  console.log("totalItemChildren", totalItemChildren);
 
-  const [tableData, setTableData] = useState([]);
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
-
-  const handleSubmit = (e) => {
+  const Submit = (e) => {
     e.preventDefault();
-    setTableData((prevTableData) => [...prevTableData, formData]);
-    setFormData({
-      elders: '',
-      childrens: '',
-      fooditem: '',
-      itemcount: '',
-    });
+    axios
+      .post("http://localhost:3001/createUser", {
+        numberOfElders,
+        snacksElder,
+        drinksElder,
+        totalItemElder,
+        numberOfChild,
+        snacksChildren,
+        drinksChildren,
+        totalItemChildren,
+      })
+      .then((result) => {
+        console.log(result);
+        navigate("/menu");
+      })
+      .catch((err) => console.log(err));
   };
-
 
   return (
     <Layout>
- <div className="background">
-          <div className="scrolling">
-      <h2>Select your delicious food item here</h2>
-    </div>
+      <div>
+        {/* <marquee direction="right">Select your delicious snack here</marquee> */}
+        <div className="background">
+          {/* <div className="scrolling"> */}
+          <marquee direction="right">
+            <h4>Select your delicious snack here</h4>
+          </marquee>
+          {/* </div> */}
 
+          <form className="formdata">
+            <label className="m-3 p-4">
+              <h5>Elders</h5>
+              <input
+                style={{ width: 250 }}
+                className="form-control"
+                type="number"
+                name="elders"
+                onChange={(e) => setNumberOfElders(e.target.value)}
+              />
+            </label>
 
-        <div>
-      <form className="displaydata" onSubmit={handleSubmit}>
-
-        
-        <label className="m-3 p-4">
-          <h5>Elders:</h5>
-          <input type="number" name="elders" value={formData.name} onChange={handleChange} />
-        </label>
-
-         <br />
-
-        <label className="m-3 p-4">
-        <h5>Childrens:</h5>
-          <input type="number" name="childrens" value={formData.name} onChange={handleChange} />
-        </label>
-
-        <br />
-
-        <label className="m-3 p-4">
-        <h5>Food Item:</h5>
-          {/* <input type="dropdown" name="fooditem" value={formData.name} onChange={handleChange} /> */}
-          <select  id="dropdown-menu" type="dropdown" name="fooditem" className="input" value={formData.name} onChange={handleChange}>
-              <option value=""></option>
-              <option value="Pizza">Pizza</option>
-              <option value="Burger">Burger</option>
-              <option value="Drink">Drinks</option>
+            <label className="m-3 p-4">
+              <h5>Snacks</h5>
+              <select
+                style={{ width: 250 }}
+                className="form-control"
+                type="dropdown"
+                name="snacks"
+                onChange={(e) => setSnacksElder(e.target.value)}
+              >
+                <option value="N/A">N/A</option>
+                <option value="Pizza">Pizza</option>
+                <option value="Burger">Burger</option>
+                <option value="Chats">Chats</option>
               </select>
-        </label>
+            </label>
 
-        <br />
+            <label className="m-3 p-4">
+              <h5>Drinks</h5>
+              <select
+                style={{ width: 250 }}
+                className="form-control"
+                type="dropdown"
+                name="drinks"
+                onChange={(e) => setDrinksElder(e.target.value)}
+              >
+                <option value="N/A">N/A</option>
+                <option value="Coffe">Coffe</option>
+                <option value="Tea">Tea</option>
+                <option value="Cool drink">Cool drink</option>
+              </select>
+            </label>
 
-        <label className="m-5 p-4">
-        <h5>Item Count:</h5>
-          <input type="number" name="itemcount" value={formData.name} onChange={handleChange} />
-        </label>
+            <label className="m-3 p-4">
+              <h5>Item count</h5>
+              <input
+                style={{ width: 250 }}
+                className="form-control"
+                type="number"
+                name="itemcount"
+                onChange={(e) => setTotalItemElder(e.target.value)}
+              />
+            </label>
 
-        <br />
-
-        <button type="submit" className="m-3 p-2 btn btn-info">Submit</button>
-
-
-      </form>
-
-      <br />
-
-      <form>
-
-        <div>
-        {/* <h6>Elders : </h6>
-        <h6>Childrens : </h6>
-        <h6>FoodItem : </h6>
-        <h6>Itemcount : </h6> */}
-        </div>
-
-        <div className="displayformdata">
-          {tableData.map((data, index) => (
-            <div key={index}>
-
-              
-              <div><span className="text-size">Elders : </span>{data.elders}</div>
-              <div><span className="text-size">Childrens : </span>{data.childrens}</div>
-              <div><span className="text-size">FoodItem : </span>{data.fooditem}</div>
-              <div><span className="text-size">Itemcount : </span>{data.itemcount}</div>
-              <button type="submit" className="m-3 p-1 btn btn-info">Submit</button>
+            <div>
+              <h4>Selected data:</h4>
+              <p>Elder: {numberOfElders}</p>
+              <p>Snacks: {snacksElder}</p>
+              <p>Snacks: {drinksElder}</p>
+              <p>Snacks: {totalItemElder}</p>
             </div>
-          ))}
+            {/* <Link to='/menu' type="button" className="btn btn-success">Submit</Link> */}
+          </form>
+
+          <form className="formdata">
+            <label className="m-3 p-4">
+              <h5>Childrens</h5>
+              <input
+                style={{ width: 250 }}
+                className="form-control"
+                type="number"
+                name="elders"
+                onChange={(e) => setNumberOfChild(e.target.value)}
+              />
+            </label>
+
+            <label className="m-3 p-4">
+              <h5>Snacks</h5>
+              <select
+                style={{ width: 250 }}
+                className="form-control"
+                type="dropdown"
+                name="snacks"
+                onChange={(e) => setSnacksChildren(e.target.value)}
+              >
+                <option value="N/A">N/A</option>
+                <option value="Pizza">Pizza</option>
+                <option value="Burger">Burger</option>
+                <option value="Chats">Chats</option>
+              </select>
+            </label>
+
+            <label className="m-3 p-4">
+              <h5>Drinks</h5>
+              <select
+                style={{ width: 250 }}
+                className="form-control"
+                type="dropdown"
+                name="drinks"
+                onChange={(e) => setDrinksChildren(e.target.value)}
+              >
+                <option value="N/A">N/A</option>
+                <option value="Coffe">Coffe</option>
+                <option value="Tea">Tea</option>
+                <option value="Cool drink">Cool drink</option>
+              </select>
+            </label>
+
+            <label className="m-3 p-4">
+              <h5>Item count</h5>
+              <input
+                style={{ width: 250 }}
+                className="form-control"
+                type="number"
+                name="itemcount"
+                onChange={(e) => setTotalItemChildren(e.target.value)}
+              />
+            </label>
+
+            <div>
+              <h4>Selected data</h4>
+              <p>Children: {numberOfChild}</p>
+              <p>Snacks: {snacksChildren}</p>
+              <p>Snacks: {drinksChildren}</p>
+              <p>Snacks: {totalItemChildren}</p>
+            </div>
+            <button onClick={Submit} type="button" className="btn btn-success">
+              Submit
+            </button>
+            {/* <Link to='/menu' type="button" className="btn btn-success">Submit</Link> */}
+          </form>
         </div>
-
-        
-
-      </form>
-    </div>
-
-  </div>
+      </div>
     </Layout>
-    
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

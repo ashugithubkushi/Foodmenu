@@ -1,0 +1,37 @@
+.head {
+    row-gap: 10px ;
+    /* margin: 10px; */
+    /* padding: 10px; */
+    /* display: flex; */
+}
+
+.head-data {
+    row-gap: 20px ;
+    background-color: rgb(188, 158, 158);
+    margin: 0px;
+}
+
+.head {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    /* justify-content: center; */
+}
+
+.head li {
+    margin: auto ;
+    font-size: 25px;
+}
+
+.head ul {
+  /* float: right; */
+  /* flex: end; */
+  justify-content: flex-end;
+  margin-left: auto;
+  position: absolute;
+}
+
+.slno {
+    margin: 0;
+
+}
