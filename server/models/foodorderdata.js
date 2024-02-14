@@ -9,5 +9,5 @@ const userSchema = new mongoose.Schema({
         itemcount: Number,
 });
 
-const UserModel = mongoose.model("foodorderdata", userSchema);
+const UserModel = mongoose.model("users", userSchema);
 module.exports = UserModel;
