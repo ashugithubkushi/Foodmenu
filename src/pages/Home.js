@@ -19,14 +19,14 @@ const Home = () => {
   const [drinksChildren, setDrinksChildren] = useState("");
   const [totalItemChildren, setTotalItemChildren] = useState();
 
-  console.log("numberOfElders", numberOfElders);
-  console.log("snacksElder", snacksElder);
-  console.log("drinksElder", drinksElder);
-  console.log("totalItemElder", totalItemElder);
-  console.log("numberOfChild", numberOfChild);
-  console.log("snacksChildren", snacksChildren);
-  console.log("drinksChildren", drinksChildren);
-  console.log("totalItemChildren", totalItemChildren);
+  // console.log("numberOfElders", numberOfElders);
+  // console.log("snacksElder", snacksElder);
+  // console.log("drinksElder", drinksElder);
+  // console.log("totalItemElder", totalItemElder);
+  // console.log("numberOfChild", numberOfChild);
+  // console.log("snacksChildren", snacksChildren);
+  // console.log("drinksChildren", drinksChildren);
+  // console.log("totalItemChildren", totalItemChildren);
 
   const Submit = (e) => {
     e.preventDefault();
