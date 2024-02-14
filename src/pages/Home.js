@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 // import Layout from '../components/Layouts/Layout'
 import "./Home.css";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import Layout from "../components/Layouts/Layout";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -31,7 +31,7 @@ const Home = () => {
   const Submit = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:3001/createUser", {
+      .post("http://localhost:3000/createUser", {
         numberOfElders,
         snacksElder,
         drinksElder,
@@ -118,8 +118,8 @@ const Home = () => {
               <h4>Selected data:</h4>
               <p>Elder: {numberOfElders}</p>
               <p>Snacks: {snacksElder}</p>
-              <p>Snacks: {drinksElder}</p>
-              <p>Snacks: {totalItemElder}</p>
+              <p>Drinks: {drinksElder}</p>
+              <p>Item Count: {totalItemElder}</p>
             </div>
             {/* <Link to='/menu' type="button" className="btn btn-success">Submit</Link> */}
           </form>
@@ -183,8 +183,8 @@ const Home = () => {
               <h4>Selected data</h4>
               <p>Children: {numberOfChild}</p>
               <p>Snacks: {snacksChildren}</p>
-              <p>Snacks: {drinksChildren}</p>
-              <p>Snacks: {totalItemChildren}</p>
+              <p>Drinks: {drinksChildren}</p>
+              <p>Item Count: {totalItemChildren}</p>
             </div>
             <button onClick={Submit} type="button" className="btn btn-success">
               Submit
