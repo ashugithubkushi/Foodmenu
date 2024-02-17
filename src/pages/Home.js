@@ -5,6 +5,7 @@ import "./Home.css";
 import Layout from "../components/Layouts/Layout";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Modal from "react-modal";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -19,6 +20,8 @@ const Home = () => {
   const [drinksChildren, setDrinksChildren] = useState("");
   const [totalItemChildren, setTotalItemChildren] = useState();
 
+  const [visible, setVisible] = useState(false);
+
   // console.log("numberOfElders", numberOfElders);
   // console.log("snacksElder", snacksElder);
   // console.log("drinksElder", drinksElder);
@@ -31,7 +34,7 @@ const Home = () => {
   const Submit = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:3000/createUser", {
+      .post("http://localhost:3000/createOrder", {
         numberOfElders,
         snacksElder,
         drinksElder,
@@ -48,8 +51,20 @@ const Home = () => {
       .catch((err) => console.log(err));
   };
 
+  // const popup = document.getElementById("popup");
+
+  // function openPopup(){
+  //      popup.classList.add("open-popup")
+  // }
+  // function closePopup(){
+  //      popup.classList.remove("open-popup")
+  // }
+
+
   return (
     <Layout>
+
+
       <div>
         {/* <marquee direction="right">Select your delicious snack here</marquee> */}
         <div className="background">
@@ -62,19 +77,38 @@ const Home = () => {
           <form className="formdata">
             <label className="m-3 p-4">
               <h5>Elders</h5>
-              <input
+              {/* <input
                 style={{ width: 250 }}
                 className="form-control"
-                type="number"
+                type="dropdown"
                 name="elders"
                 onChange={(e) => setNumberOfElders(e.target.value)}
-              />
+              /> */}
+              <select
+                style={{ width: 150 }}
+                className="form-control"
+                type="dropdown"
+                name="elders"
+                onChange={(e) => setNumberOfElders(e.target.value)}
+              >
+                <option value="N/A">N/A</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+              </select>
             </label>
 
             <label className="m-3 p-4">
               <h5>Snacks</h5>
               <select
-                style={{ width: 250 }}
+                style={{ width: 150 }}
                 className="form-control"
                 type="dropdown"
                 name="snacks"
@@ -90,7 +124,7 @@ const Home = () => {
             <label className="m-3 p-4">
               <h5>Drinks</h5>
               <select
-                style={{ width: 250 }}
+                style={{ width: 150 }}
                 className="form-control"
                 type="dropdown"
                 name="drinks"
@@ -105,13 +139,25 @@ const Home = () => {
 
             <label className="m-3 p-4">
               <h5>Item count</h5>
-              <input
-                style={{ width: 250 }}
+              <select
+                style={{ width: 150 }}
                 className="form-control"
                 type="number"
                 name="itemcount"
                 onChange={(e) => setTotalItemElder(e.target.value)}
-              />
+              >
+                <option value="N/A">N/A</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+              </select>
             </label>
 
             <div>
@@ -127,19 +173,31 @@ const Home = () => {
           <form className="formdata">
             <label className="m-3 p-4">
               <h5>Childrens</h5>
-              <input
-                style={{ width: 250 }}
+              <select
+                style={{ width: 150 }}
                 className="form-control"
                 type="number"
                 name="elders"
                 onChange={(e) => setNumberOfChild(e.target.value)}
-              />
+              >
+                <option value="N/A">N/A</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+              </select>
             </label>
 
             <label className="m-3 p-4">
               <h5>Snacks</h5>
               <select
-                style={{ width: 250 }}
+                style={{ width: 150 }}
                 className="form-control"
                 type="dropdown"
                 name="snacks"
@@ -155,7 +213,7 @@ const Home = () => {
             <label className="m-3 p-4">
               <h5>Drinks</h5>
               <select
-                style={{ width: 250 }}
+                style={{ width: 150 }}
                 className="form-control"
                 type="dropdown"
                 name="drinks"
@@ -170,13 +228,25 @@ const Home = () => {
 
             <label className="m-3 p-4">
               <h5>Item count</h5>
-              <input
-                style={{ width: 250 }}
+              <select
+                style={{ width: 150 }}
                 className="form-control"
                 type="number"
                 name="itemcount"
                 onChange={(e) => setTotalItemChildren(e.target.value)}
-              />
+              >
+                <option value="N/A">N/A</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+              </select>
             </label>
 
             <div>
@@ -191,6 +261,47 @@ const Home = () => {
             </button>
             {/* <Link to='/menu' type="button" className="btn btn-success">Submit</Link> */}
           </form>
+
+          <div>
+            <button type="submit" class="btn" onClick={() => setVisible(true)}>
+              Submit
+            </button>
+            <Modal
+              isOpen={visible}
+              onRequestClose={() => setVisible(false)}
+              style={{
+                overlay: {
+                  position: "fixed",
+                  zIndex: 1020,
+                  top: 0,
+                  left: 0,
+                  width: "100vw",
+                  height: "100vh",
+                  background: "rgba(255, 255, 255, 0.75)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                },
+                content: {
+                  background: "white",
+                  width: "45rem",
+                  maxWidth: "calc(100vw - 2rem)",
+                  maxHeight: "calc(100vh - 2rem)",
+                  overflowY: "auto",
+                  position: "relative",
+                  border: "1px solid #ccc",
+                  borderRadius: "0.3rem",
+                },
+              }}
+            >
+              <h1>Success</h1>
+              <p>Your Order has been submitted! <br />
+              Thank you. </p>
+              <button type="button" onClick={() => setVisible(false)}>
+                OK
+              </button>
+            </Modal>
+          </div>
         </div>
       </div>
     </Layout>

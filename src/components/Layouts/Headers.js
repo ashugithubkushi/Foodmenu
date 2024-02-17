@@ -22,6 +22,9 @@ const Headers = () => {
             <li>
               <Link to={"/abouut"}>About</Link>
             </li>
+            <li>
+              <Link to={"/bell"}><i class="bi bi-bell-fill"></i></Link>
+            </li>
             {/* <li><Link to={"/contact"} >Contact</Link></li> */}
           </ul>
 
