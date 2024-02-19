@@ -1,10 +1,16 @@
 /* Basic styling for your login form */
+
+
+
+
 .App {
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: linear-gradient(170deg, rgb(147, 100, 100), white);
+    /* background: linear-gradient(170deg, rgb(147, 100, 100), white); */
+  background-image: url(C:\Users\KITS\foodmenu1\client\src\assets\50-Beautiful-and-Minimalist-Presentation-Backgrounds-040.jpg);
+    background-repeat: no-repeat;
     /* border: rgb(147, 100, 100); */
   }
   

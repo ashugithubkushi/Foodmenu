@@ -10,7 +10,7 @@ const Bell = () => {
   const [counter, setCounter] = useState(0);
  
   // Function is called everytime increment button is clicked
-  const handleClick1 = () => {
+  const handleClick1 = () => {  
       // Counter state is incremented
       setCounter(counter + 1);
   };

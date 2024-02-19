@@ -9,9 +9,10 @@ import { useParams } from "react-router-dom";
 const Menu = () => {
   const { id } = useParams();
   const [orders, setOrders] = useState([]);
-  // const [status, setStatus] = useState();
-  // const [orderStatus, setOrderStatus] = useState();
-  const [statusform, setStatusform] = useState([]);
+  const [status, setStatus] = useState();
+  const [orderStatus, setOrderStatus] = useState([]);
+  // const [statusform, setStatusform] = useState([]);
+  // const [myValue, setMyValue] = useState("");
 
   useEffect(() => {
     axios
@@ -24,31 +25,48 @@ const Menu = () => {
       .catch((err) => console.log(err));
   }, []);
 
-  // const Update = (e, id) => {
-  //   e.preventDefault();
-  //   axios.put("http://localhost:3000/updateStatus/"+id  , {orderStatus})
-  //   .then(result => {
-  //       console.log(result)
-
-  //       setStatus(false)
-  //       // navigate('/')
-  //   })
-  //   .catch(err => console.log(err))
-  //  }
-
-  const Update = (e) => {
+  const Update = (e, status, id) => {
     e.preventDefault();
-    axios.put("http://localhost:3000/updateUser" +id  , {statusform})
+    axios.put("http://localhost:3000/updateStatus/"+id  , {status})
     .then(result => {
         console.log(result)
+
+        // setStatus(false)
         // navigate('/')
     })
     .catch(err => console.log(err))
    }
 
+  // const Update = (e) => {
+  //   e.preventDefault();
+  //   axios.put("http://localhost:3000/updateUser" +id  , {statusform})
+  //   .then(result => {
+  //       // console.log(result)
+  //       setStatusform(result.data);
+  //       // navigate('/')
+  //   })
+  //   .catch(err => console.log(err))
+  //  }
+
+// useEffect(() =>{
+//   axios.put("http://localhost:3000/updateUser" +id  , {statusform})
+// }, [])
+
+// const Update = (e) => {
+
+// }
+const [post, setPost] = useState({
+  title: '',
+  body: ''
+})
+
+
+
   return (
     <Layout>
-      <div></div>
+      <div>
+        
+      </div>
 
       <div className="w-100 vh-100 justify-content-center align-items-center">
         <div className="w-100">
@@ -67,14 +85,17 @@ const Menu = () => {
                 <th scope="row">Total count</th>
                 <th scope="row">Status</th>
                 <th scope="row">ordered Time</th>
-                {/* <th scope="row">snacksChildren</th>
-                <th scope="row">drinksChildren</th>
-                <th scope="row">totalItemChildren</th> */}
               </tr>
             </thead>
 
             {orders.map((item, i) => {
               //  console.log(item)
+            
+              // setOrderStatus[item._id] = item.status
+              // let obj1=[{item._id : item.status}]
+              // setOrderStatus(prevState => [...prevState, obj1])
+              // console.log(orderStatus)
+              
               return (
                 <tbody>
                   <tr key={i}>
@@ -89,60 +110,50 @@ const Menu = () => {
                     <td className="status-btn p-5 m-1" rowSpan={2} scope="row">
 
 
-                      {/* <div>
-                        <form>
-                          <label>
-                            Name:
-                            <input
-                              type="text"
-                              name="name"
-                              onChange={this.handleInputChange}
-                            />
-                          </label>
-                          <br />
-                          <label>
-                            Email:
-                            <input
-                              type="text"
-                              name="email"
-                              onChange={this.handleInputChange}
-                            />
-                          </label>
-                        </form>
-                        <div>
-                          <h2>Your Input:</h2>
-                          <p>Name: {this.state.name}</p>
-                          <p>Email: {this.state.email}</p>
-                        </div>
-                      </div> */}
-
-              {/* <label className="m-3 p-4">
-              <select 
-                style={{ width: 150 }}
-                className="form-control"
-                type="dropdown"
-                name="snacks"
-                onSubmit={Update}
-                // onChange={(e) => setStatusform(e.target.value)}
-              >
-                <option value="Pending">pending</option>
-                <option value="In progress">In progress</option>
-                <option value="Ordered">Ordered</option>
-              </select>
-            </label> */}
-
-
 
             {/* <h2>Status</h2> */}
             <div className="mb-2">
-              <select className="form-control" name="" id="" onSubmit={Update}>
+              <select className="form-control" name="" id=""
+                onChange={(e) => Update(e, e.target.value, item._id)}
+                 value={item.status}
+                // value={orderStatus[item._id]}
+                >
                 <option value="Pending">Pending</option>
                 <option value="In progress">In progress</option>
                 <option value="Ordered">Ordered</option>
-                </select> <br />
-                {/* <button className='btn btn-success'>Update</button> */}
+                </select>
+                </div>
+
+
+
+            
                 
-            </div>
+            
+
+            {/* <div>
+      <select
+        onChange={(e) => setMyValue(e.target.value)}
+        defaultValue={myValue}
+      >
+        <option>Option 1</option>
+        <option>Option 2</option>
+        <option>Option 3</option>
+      </select>
+      <h2>
+        {" "}
+        You selected{" "}
+        <span style={{ backgroundColor: "yellow" }}>{myValue}</span>
+      </h2>
+      <button class="btn btn-success p-2  m-1"
+                            type="submit" 
+                            // onClick={() => setStatus(false)}
+                onChange={(e) => setMyValue(e.target.value)}
+
+                            onClick={e => Update(e,item._id)}
+                          > 
+                            OK
+                          </button>
+    </div> */}
             
       
 
@@ -151,7 +162,7 @@ const Menu = () => {
                         <button class="btn btn-success p-2 m-1"
                           type="btn"
                           onClick={() => setStatus(true)}
-                // onChange={(e) => setStatus(e.target.value)}
+                onChange={(e) => setStatus(e.target.value)}
                           
                         >
                           {
@@ -216,6 +227,8 @@ const Menu = () => {
                         </Modal>
                       </div> */}
                     </td>
+
+
 
                     <td class="status-btn p-5 m-1" rowSpan={2} scope="row">
                       {new Date(item.orderDateTime).toLocaleString(undefined, {
